@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import ReactMapGL, {Layer} from "react-map-gl";
+import React, { useState } from "react";
+import ReactMapGL, {Layer, Source} from "react-map-gl";
 import {styleLayer} from "./map-style"
 
 function Map() {
@@ -8,8 +8,11 @@ function Map() {
     longitude: -122.4217,
     width: "100vw",
     height: "100vh",
-    zoom: 10,
+    zoom: 2,
+    minZoom: 2
   });
+
+  console.log(ReactMapGL)
 
   return (
     <ReactMapGL
@@ -20,7 +23,9 @@ function Map() {
           setViewport(viewport);
       }}
     >
+        <Source type= 'vector' url= 'mapbox://byfrost-articles.74qv0xp0'>
         <Layer {...styleLayer}/>
+        </Source>
 
     </ReactMapGL>
   );
