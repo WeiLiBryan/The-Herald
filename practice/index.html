@@ -8,7 +8,22 @@
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
 <style>
 body { margin: 0; padding: 0; }
-#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%;}
+#popup {
+    background: #fff;
+    position: absolute;
+    z-index: 1;
+    border-radius: 3px;
+    width: 40%;
+    height: 900px;
+    border: 1px solid rgba(0,0,0,0.4);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    right:0;
+    padding: 5px; 
+    overflow-y: scroll;
+}
+
 </style>
 </head>
 <body>
@@ -18,10 +33,12 @@ body { margin: 0; padding: 0; }
         font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     }
 </style>
+<div id="popup">Click on a country to view news</div>
 <div id="map"></div>
+
 <script>
 	mapboxgl.accessToken = 'pk.eyJ1Ijoid2lsbGlhbWJyeWFuIiwiYSI6ImNrbG9hbWEybDAyOTAycG8waDJucjFrODcifQ.SdtJrsi2-DXjfbHIWIcDVA';
-  const API_KEY = "0e220e65f7324225a3a82a01eef04123";
+  const API_KEY = "e0f07ff44c4a4914a78bf913d06b2a60";
 
   var map = new mapboxgl.Map({
   container: 'map', //this is the id of the container you want your map in
@@ -294,24 +311,34 @@ map.on('load', function() { //On map load, we want to do some stuff
     
   map.on('click', 'countries', function (mapElement) {
     let search_term = mapElement.features[0].properties.NAME;
+    let html = ``;
     console.log("---------------------------------\n",search_term);
 
-    fetch(`https://newsapi.org/v2/everything?q=${search_term}&sortBy=publishedAt&apiKey=${API_KEY}`)
+    fetch(`https://newsapi.org/v2/everything?qInTitle=${search_term}&sortBy=publishedAt&apiKey=${API_KEY}`)
       .then((data) => data.json())
       .then(article => {
         console.log("---------------------------------",article);
-        const html = `
-        <ul>
-          <li><h3>${article.articles[0].title}</h3></li>
-          <li><strong>Content:</strong> ${article.articles[0].content}</li>
-          <li><strong>Description:</strong> ${article.articles[0].description}</li>
-          <li><strong>Author:</strong> ${article.articles[0].author}</li>
-        </ul>
-        `;
-        new mapboxgl.Popup() //Create a new popup
-          .setLngLat(mapElement.lngLat) // Set where we want it to appear (where we clicked)
-          .setHTML(html) // Add the HTML we just made to the popup
-          .addTo(map); // Add the popup to the map
+        article.articles.slice(0, 5).map(article => {
+          html += `
+          <h3>${article.title}</h3>
+          <ul class="news">
+            <li><strong>Content:</strong> ${article.content}</li>
+            <li><strong>Description:</strong> ${article.description}</li>
+            <li><strong>Author:</strong> ${article.author}</li>
+          </ul>
+        `
+        })
+        
+
+        const popup = document.getElementById("popup");
+        popup.innerHTML = html;
+
+        // new mapboxgl.Popup() //Create a new popup
+        //   .setLngLat(mapElement.lngLat) // Set where we want it to appear (where we clicked)
+        //   .setHTML(html) // Add the HTML we just made to the popup
+        //   .addTo(map); // Add the popup to the map
+
+
       })
 
 
