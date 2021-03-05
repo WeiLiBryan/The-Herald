@@ -309,7 +309,11 @@ map.on('load', function() { //On map load, we want to do some stuff
   'ZWE',
   "SSD",])); // This line lets us filter by country codes.
     
+  
+  console.log("map", map);
   map.on('click', 'countries', function (mapElement) {
+    console.log("mapElement", mapElement);
+    console.log("mapElement features", mapElement.features);
     let search_term = mapElement.features[0].properties.NAME;
     let html = ``;
     console.log("---------------------------------\n",search_term);
