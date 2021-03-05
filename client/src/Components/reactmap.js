@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ReactMapGL from "react-map-gl";
+import ReactMapGL, {Layer} from "react-map-gl";
+import {styleLayer} from "./map-style"
 
 function Map() {
   const [viewport, setViewport] = useState({
@@ -18,7 +19,10 @@ function Map() {
       onViewportChange={viewport => {
           setViewport(viewport);
       }}
-    ></ReactMapGL>
+    >
+        <Layer {...styleLayer}/>
+
+    </ReactMapGL>
   );
 }
 
