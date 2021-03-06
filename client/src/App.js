@@ -11,18 +11,35 @@ export default class App extends Component {
     this.setState({ toggle: !this.state.toggle });
   };
   render() {
+    const li = [
+      {
+        link: "/",
+        text: "Home",
+      },
+      {
+        link: "/about/",
+        text: "About us",
+      },
+      {
+        link: "/Signup/",
+        text: "Signup",
+      },
+    ];
+
     return (
       <>
         <div className="navBar">
           <button onClick={this.Toggle}>
             <FaAlignRight />
           </button>
-          <ul
-            className={this.state.toggle ? "nav-links show-nav" : "nav-links"}
-          >
-            <li href="#">Home</li>
-            <li href="#">About</li>
-            <li href="#">Signup</li>
+          <ul className={this.state.toggle ? "links show-nav" : "links"}>
+            {li.map((objLink, i) => {
+              return (
+                <li>
+                  <a href={objLink.link}>{objLink.text}</a>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </>
