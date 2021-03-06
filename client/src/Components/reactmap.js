@@ -1,7 +1,7 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import ReactMapGL, {Layer, Source} from "react-map-gl";
 import {styleLayer} from "./map-style"
-import API from "../utils/API.js"
+// import API from "../utils/API.js"
 
 function Map() {
   const [viewport, setViewport] = useState({
@@ -13,17 +13,24 @@ function Map() {
     minZoom: 2 
   });
 
-  // const [popup, setPopup] = useState("")
 
-  const handleCountrySel = function handleCountrySel (e) {
-    var countryName = e.target
-    console.log(countryName);
-    // API.newsArticles(countryName).then(function (res) {
-    //   console.log(res);
-    // })
-  }; 
 
-  console.log("Map Object", ReactMapGL)
+  // const handleCountrySel = function handleCountrySel (e) {
+  //   var countryName = e.target
+  //   console.log(countryName);
+  //   // API.newsArticles(countryName).then(function (res) {
+  //   //   console.log(res);
+  //   // })
+  // }; 
+
+  const onClick = (event => {
+    // const country = event.features[0];
+    const countryName = event.features[0].properties.NAME
+    // console.log (country); 
+    console.log (countryName);
+  })
+  
+
 
   return (
     <ReactMapGL
@@ -34,7 +41,7 @@ function Map() {
           setViewport(viewport);
           
       }}
-      onClick={handleCountrySel}
+      onClick={onClick}
     >
         <Source type= 'vector' url= 'mapbox://byfrost-articles.74qv0xp0'>
         <Layer {...styleLayer}/>
