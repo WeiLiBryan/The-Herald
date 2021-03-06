@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactMapGL, {Layer, Source} from "react-map-gl";
 import {styleLayer} from "./map-style"
-// import API from "../utils/API.js"
+import API from "../utils/API.js"
 
 function Map() {
   const [viewport, setViewport] = useState({
@@ -15,20 +15,20 @@ function Map() {
 
 
 
-  // const handleCountrySel = function handleCountrySel (e) {
-  //   var countryName = e.target
-  //   console.log(countryName);
-  //   // API.newsArticles(countryName).then(function (res) {
-  //   //   console.log(res);
-  //   // })
-  // }; 
+  const handleCountrySel = function handleCountrySel (e) {
+    var countryName = e.features[0].properties.NAME
+    console.log(countryName);
+    API.newsArticles(countryName).then(function (res) {
+      console.log("news articles", res);
+    })
+  }; 
 
-  const onClick = (event => {
-    // const country = event.features[0];
-    const countryName = event.features[0].properties.NAME
-    // console.log (country); 
-    console.log (countryName);
-  })
+  // const onClick = (event => {
+  //   // const country = event.features[0];
+  //   const countryName = event.features[0].properties.NAME
+  //   // console.log (country); 
+  //   console.log (countryName);
+  // })
   
 
 
@@ -41,7 +41,7 @@ function Map() {
           setViewport(viewport);
           
       }}
-      onClick={onClick}
+      onClick={handleCountrySel}
     >
         <Source type= 'vector' url= 'mapbox://byfrost-articles.74qv0xp0'>
         <Layer {...styleLayer}/>
