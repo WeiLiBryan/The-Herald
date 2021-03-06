@@ -1,6 +1,8 @@
 import React from "react";
+import "./popup.css";
 
-function Popup(props) {
+function PopupDiv(props) {
+    console.log(props.title);
     return (
         <div>
             <h3>{props.title}</h3>
@@ -13,4 +15,4 @@ function Popup(props) {
     );
 }
 
-export default Popup;
+export default PopupDiv;

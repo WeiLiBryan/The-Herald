@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactMapGL, {Layer, Source} from "react-map-gl";
 import {styleLayer} from "./map-style";
 import API from "../utils/API.js";
-import Popup from "./Popup/index.js" 
+import PopupDiv from "./Popup/index.js" 
 
 function Map() {
   const [viewport, setViewport] = useState({
@@ -27,7 +27,7 @@ function Map() {
       if (!articles) {
 
       } else {
-        console.log("news articles", articles);
+        // console.log("news articles", articles);
         setArticles(articles);
         
         // articles.map(article => {
@@ -57,15 +57,20 @@ function Map() {
   return (
     <div className="main">
       <div className="popup">
-        {articles.map(item => {
-          <Popup 
-            title = {item.title}
-            content = {item.content}
-            description = {item.description}
-            author = {item.author}
-          />
+
+        {articles.splice(0,5).map(item => {
+          return(
+            <PopupDiv 
+              id = {0}
+              title = {item.title}
+              content = {item.content}
+              description = {item.description}
+              author = {item.author}
+            />
+          );
         })}
       </div>
+      
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken="pk.eyJ1Ijoic3BlbnJhZCIsImEiOiJja2x3bWZoc2EwMGFwMnVxa3NueXZmMHlnIn0.m_FPTC7C4JhyOtzp2KwcKg"
