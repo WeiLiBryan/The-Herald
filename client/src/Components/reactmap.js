@@ -14,7 +14,7 @@ function Map() {
     minZoom: 2 
   });
 
-  const [popup, setPopup] = useState("");
+  const [articles, setArticles] = useState([]);
 
 
 
@@ -28,22 +28,18 @@ function Map() {
 
       } else {
         console.log("news articles", articles);
-        let html = ``;
-        articles.map(article => {
-          html += `
-          <h3>${article.title}</h3>
-          <ul class="news">
-            <li><strong>Content:</strong> ${article.content}</li>
-            <li><strong>Description:</strong> ${article.description}</li>
-            <li><strong>Author:</strong> ${article.author}</li>
-          </ul> \n
-          `
-        });
-
-        setPopup(html);
-
-        console.log("popup", popup);
-
+        setArticles(articles);
+        
+        // articles.map(article => {
+        //   html += `
+        //   <h3>${article.title}</h3>
+        //   <ul class="news">
+        //     <li><strong>Content:</strong> ${article.content}</li>
+        //     <li><strong>Description:</strong> ${article.description}</li>
+        //     <li><strong>Author:</strong> ${article.author}</li>
+        //   </ul> \n
+        //   `
+        // });
 
       }
     })
@@ -59,8 +55,17 @@ function Map() {
 
 
   return (
-    <div>
-      {/* <Popup html={popup} /> */}
+    <div className="main">
+      <div className="popup">
+        {articles.map(item => {
+          <Popup 
+            title = {item.title}
+            content = {item.content}
+            description = {item.description}
+            author = {item.author}
+          />
+        })}
+      </div>
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken="pk.eyJ1Ijoic3BlbnJhZCIsImEiOiJja2x3bWZoc2EwMGFwMnVxa3NueXZmMHlnIn0.m_FPTC7C4JhyOtzp2KwcKg"
