@@ -14,12 +14,11 @@ function Map() {
   });
 
 
-
   const handleCountrySel = function handleCountrySel (e) {
     var countryName = e.features[0].properties.NAME
-    console.log(countryName);
+    console.log("countryName", countryName);
     API.newsArticles(countryName).then(function (res) {
-      console.log("news articles", res);
+      console.log("news articles", res.data.articles);
     })
   }; 
 
