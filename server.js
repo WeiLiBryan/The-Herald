@@ -1,11 +1,11 @@
-var express = require("express");
-var session = require("express-session");
-var passport = require("./config/passport");
+const express = require("express");
+const session = require("express-session");
+const passport = require("./config/passport");
 
-var app = express();
-var PORT = process.env.PORT || 8080;
-var db = require("./models");
-var routes = require("./routes");
+const app = express();
+const mongoose = require("mongoose");
+const PORT = process.env.PORT || 8080;
+const routes = require("./routes");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -22,8 +22,8 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(routes);
 
-db.sequelize.sync({}).then(function () {
-  app.listen(PORT, function () {
-    console.log("App listening on PORT " + PORT);
-  })
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/worldinfo");
+
+app.listen(PORT, function() {
+  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
