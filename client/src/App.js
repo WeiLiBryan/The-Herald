@@ -18,7 +18,7 @@ export default class App extends Component {
       },
       {
         link: "/about/",
-        text: "About us",
+        text: "About",
       },
       {
         link: "/Signup/",
