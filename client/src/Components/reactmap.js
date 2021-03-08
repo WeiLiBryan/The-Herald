@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import ReactMapGL, {Layer, Source} from "react-map-gl";
+import ReactMapGL, {Layer, Source, LinearInterpolator, WebMercatorViewport} from "react-map-gl";
 import {styleLayer} from "./map-style"
 import API from "../utils/API.js"
+import bbox from '@turf/bbox';
+
 
 function Map() {
   const [viewport, setViewport] = useState({
@@ -15,11 +17,41 @@ function Map() {
 
 
   const handleCountrySel = function handleCountrySel (e) {
+    console.log("e.features", e.features);
     var countryName = e.features[0].properties.NAME
     console.log("countryName", countryName);
     API.newsArticles(countryName).then(function (res) {
       console.log("news articles", res.data.articles);
     })
+    const feature = e.features[0];
+    if (feature) {
+      // calculate the bounding box of the feature
+      const [minLng, minLat, maxLng, maxLat] = bbox(feature);
+      // construct a viewport instance from the current state
+      const vp = new WebMercatorViewport(viewport); 
+      console.log("WebMercatorViewport", vp);
+      const {longitude, latitude, zoom} = vp.fitBounds(
+        [
+          [minLng, minLat],
+          [maxLng, maxLat]
+        ],
+        {
+          padding: 40
+        }
+       
+      );
+
+      setViewport({
+        ...viewport,
+        longitude,
+        latitude,
+        zoom,
+        transitionInterpolator: new LinearInterpolator({
+          around: [e.offsetCenter.x, e.offsetCenter.y]
+        }),
+        transitionDuration: 1000
+      }, []);
+    }
   }; 
 
   // const onClick = (event => {

@@ -1,15 +1,16 @@
 import './App.css';
-import Map from "./Components/reactmap";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Signup from "./Pages/Signup"
 import Login from "./Pages/Login"
+import MapPage from "./Pages/Map"
 
 function App() {
   return (
     <div className="App">
      <Router>
       <Switch>
-        <Route exact path="/" component = {Signup} />
+        <Route exact path="/" component = {MapPage} />
+        <Route exact path="/signup" component = {Signup} />
         <Route exact path="/Login" component={Login} />
       </Switch>
     </Router>
