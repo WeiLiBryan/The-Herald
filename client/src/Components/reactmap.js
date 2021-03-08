@@ -1,8 +1,14 @@
 import React, { useState } from "react";
-import ReactMapGL, { Layer, Source } from "react-map-gl";
+import ReactMapGL, {
+  Layer,
+  Source,
+  LinearInterpolator,
+  WebMercatorViewport,
+} from "react-map-gl";
 import { styleLayer } from "./map-style";
 import API from "../utils/API.js";
-import PopupDiv from "./Popup/index.js"
+import bbox from "@turf/bbox";
+import PopupDiv from "./Popup/index.js";
 
 function Map() {
   const [viewport, setViewport] = useState({
@@ -11,40 +17,59 @@ function Map() {
     width: "100vw",
     height: "100vh",
     zoom: 2,
-    minZoom: 2
+    minZoom: 2,
   });
 
   const [articles, setArticles] = useState([]);
   const [display, setDisplay] = useState(false);
 
   const handleCountrySel = function handleCountrySel(e) {
+    console.log("e.features", e.features);
     setDisplay(true);
-    var countryName = e.features[0].properties.NAME
-    if (countryName === undefined) { return; }
+    var countryName = e.features[0].properties.NAME;
+    if (countryName === undefined) {
+      return;
+    }
     console.log("countryName", countryName);
 
     API.newsArticles(countryName).then(function (res) {
+      console.log("news articles", res.data.articles);
       let data = res.data.articles;
 
       setArticles(data);
+    });
 
-      // console.log();
-      // console.log(data);
-      // articles.push(res);
-      //   console.log("news articles", articles);
+    const feature = e.features[0];
+    if (feature) {
+      // calculate the bounding box of the feature
+      const [minLng, minLat, maxLng, maxLat] = bbox(feature);
+      // construct a viewport instance from the current state
+      const vp = new WebMercatorViewport(viewport);
+      console.log("WebMercatorViewport", vp);
+      const { longitude, latitude, zoom } = vp.fitBounds(
+        [
+          [minLng, minLat],
+          [maxLng, maxLat],
+        ],
+        {
+          padding: 40,
+        }
+      );
 
-
-      // articles.map(article => {
-      //   html += `
-      //   <h3>${article.title}</h3>
-      //   <ul class="news">
-      //     <li><strong>Content:</strong> ${article.content}</li>
-      //     <li><strong>Description:</strong> ${article.description}</li>
-      //     <li><strong>Author:</strong> ${article.author}</li>
-      //   </ul> \n
-      //   `
-      // });
-    })
+      setViewport(
+        {
+          ...viewport,
+          longitude,
+          latitude,
+          zoom,
+          transitionInterpolator: new LinearInterpolator({
+            around: [e.offsetCenter.x, e.offsetCenter.y],
+          }),
+          transitionDuration: 1000,
+        },
+        []
+      );
+    }
   };
 
   return (
@@ -52,10 +77,10 @@ function Map() {
       <div
         className="popup"
         style={{
-          display: display ? "block" : "none"
-        }}>
-
-        {articles.splice(0, 5).map(item => {
+          display: display ? "block" : "none",
+        }}
+      >
+        {articles.splice(0, 5).map((item) => {
           return (
             <PopupDiv
               display={display}
@@ -73,17 +98,15 @@ function Map() {
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken="pk.eyJ1Ijoic3BlbnJhZCIsImEiOiJja2x3bWZoc2EwMGFwMnVxa3NueXZmMHlnIn0.m_FPTC7C4JhyOtzp2KwcKg"
-        mapStyle='mapbox://styles/mapbox/light-v9'
-        onViewportChange={viewport => {
+        mapStyle="mapbox://styles/mapbox/light-v9"
+        onViewportChange={(viewport) => {
           setViewport(viewport);
-
         }}
         onClick={handleCountrySel}
       >
-        <Source type='vector' url='mapbox://byfrost-articles.74qv0xp0'>
+        <Source type="vector" url="mapbox://byfrost-articles.74qv0xp0">
           <Layer {...styleLayer} />
         </Source>
-
       </ReactMapGL>
     </div>
   );
