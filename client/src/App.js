@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import "./App.css";
 import Map from "./Components/reactmap";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
