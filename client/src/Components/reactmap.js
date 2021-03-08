@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactMapGL, { Layer, Source } from "react-map-gl";
 import { styleLayer } from "./map-style";
 import API from "../utils/API.js";
-import CarouselSlide from "./CarouselSlide"
+import PopupDiv from "./Popup/index.js"
 
 function Map() {
   const [viewport, setViewport] = useState({
@@ -15,10 +15,10 @@ function Map() {
   });
 
   const [articles, setArticles] = useState([]);
-
-
+  const [display, setDisplay] = useState(false);
 
   const handleCountrySel = function handleCountrySel(e) {
+    setDisplay(true);
     var countryName = e.features[0].properties.NAME
     if (countryName === undefined) { return; }
     console.log("countryName", countryName);
@@ -26,7 +26,7 @@ function Map() {
     API.newsArticles(countryName).then(function (res) {
       let data = res.data.articles;
 
-      setArticles([data]);
+      setArticles(data);
 
       // console.log();
       // console.log(data);
@@ -49,47 +49,23 @@ function Map() {
 
   return (
     <div className="main">
-      <div className="popup">
+      <div
+        className="popup"
+        style={{
+          display: display ? "block" : "none"
+        }}>
 
         {articles.splice(0, 5).map(item => {
           return (
-
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
-              </div>
-              <div class="carousel-inner">
-                <CarouselSlide 
-                  id = {0}
-                  title = {item.title}  
-                  content = {item.content}
-                  description = {item.description}
-                  author = {item.author}
-                  image = {item.urlToImage}
-                />
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-
-            // <PopupDiv 
-            //   id = {0}
-            //   title = {item.title}  
-            //   content = {item.content}
-            //   description = {item.description}
-            //   author = {item.author}
-            //   image = {item.urlToImage}
-            // />
+            <PopupDiv
+              display={display}
+              id={0}
+              title={item.title}
+              content={item.content}
+              description={item.description}
+              author={item.author}
+              image={item.urlToImage}
+            />
           );
         })}
       </div>
