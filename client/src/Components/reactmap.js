@@ -3,7 +3,7 @@ import ReactMapGL, {Layer, Source, LinearInterpolator, WebMercatorViewport} from
 import {styleLayer} from "./map-style"
 import API from "../utils/API.js"
 import bbox from '@turf/bbox';
-
+import PopupDiv from "./Popup/index.js"
 
 function Map() {
   const [viewport, setViewport] = useState({
@@ -12,16 +12,24 @@ function Map() {
     width: "100vw",
     height: "100vh",
     zoom: 2,
-    minZoom: 2 
+    minZoom: 2
   });
 
+  const [articles, setArticles] = useState([]);
+  const [display, setDisplay] = useState(false);
 
   const handleCountrySel = function handleCountrySel (e) {
     console.log("e.features", e.features);
+    setDisplay(true);
     var countryName = e.features[0].properties.NAME
+    if (countryName === undefined) { return; }
     console.log("countryName", countryName);
+
     API.newsArticles(countryName).then(function (res) {
       console.log("news articles", res.data.articles);
+      let data = res.data.articles;
+
+      setArticles(data);
     })
     const feature = e.features[0];
     if (feature) {
@@ -52,33 +60,47 @@ function Map() {
         transitionDuration: 1000
       }, []);
     }
-  }; 
-
-  // const onClick = (event => {
-  //   // const country = event.features[0];
-  //   const countryName = event.features[0].properties.NAME
-  //   // console.log (country); 
-  //   console.log (countryName);
-  // })
-  
-
+  };
 
   return (
-    <ReactMapGL
-      {...viewport}
-      mapboxApiAccessToken="pk.eyJ1Ijoic3BlbnJhZCIsImEiOiJja2x3bWZoc2EwMGFwMnVxa3NueXZmMHlnIn0.m_FPTC7C4JhyOtzp2KwcKg"
-      mapStyle= 'mapbox://styles/mapbox/light-v9'
-      onViewportChange={viewport => {
+    <div className="main">
+      <div
+        className="popup"
+        style={{
+          display: display ? "block" : "none"
+        }}>
+
+        {articles.splice(0, 5).map(item => {
+          return (
+            <PopupDiv
+              display={display}
+              id={0}
+              title={item.title}
+              content={item.content}
+              description={item.description}
+              author={item.author}
+              image={item.urlToImage}
+            />
+          );
+        })}
+      </div>
+
+      <ReactMapGL
+        {...viewport}
+        mapboxApiAccessToken="pk.eyJ1Ijoic3BlbnJhZCIsImEiOiJja2x3bWZoc2EwMGFwMnVxa3NueXZmMHlnIn0.m_FPTC7C4JhyOtzp2KwcKg"
+        mapStyle='mapbox://styles/mapbox/light-v9'
+        onViewportChange={viewport => {
           setViewport(viewport);
-          
-      }}
-      onClick={handleCountrySel}
-    >
-        <Source type= 'vector' url= 'mapbox://byfrost-articles.74qv0xp0'>
-        <Layer {...styleLayer}/>
+
+        }}
+        onClick={handleCountrySel}
+      >
+        <Source type='vector' url='mapbox://byfrost-articles.74qv0xp0'>
+          <Layer {...styleLayer} />
         </Source>
 
-    </ReactMapGL>
+      </ReactMapGL>
+    </div>
   );
 }
 
