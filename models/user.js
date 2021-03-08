@@ -9,7 +9,7 @@ const userSchema = new Schema ({
     topic: {type :String}
   });
 
-UserSchema.pre("save", function(next) {
+userSchema.pre("save", function(next) {
   
   var user = this;
 
@@ -31,7 +31,7 @@ bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
 });
 });
 
-UserSchema.methods.comparePassword = function(candidatePassword, cb) {
+userSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return cb(err);
         cb(null, isMatch);
