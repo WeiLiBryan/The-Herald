@@ -58,9 +58,11 @@ const localStrategy = require("passport-local").Strategy;
   );
 
   passport.serializeUser((user, cb) => {
+    console.log("serializing")
     cb(null, user.id);
   });
   passport.deserializeUser((id, cb) => {
+    console.log("deserializing")
     User.findOne({ _id: id }, (err, user) => {
       const userInformation = {
         username: user.username,
