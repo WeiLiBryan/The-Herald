@@ -35,6 +35,15 @@ module.exports = {
         res.json();
       })
       .catch((err) => res.status(422).json(err));
+  },
+
+  grab: function  (req, res) {
+    db.User.findOne(
+      {username : req.user.username}
+    ).then(function(data) {
+      console.log("userInfo", data);
+      res.json(data);
+    }).catch((err) => res.status(422).json(err));
   }
 
 };
