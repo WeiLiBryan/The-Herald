@@ -27,37 +27,9 @@ function NewsFeed() {
 
   return (
     <div>
-      <Accordion>
-        {userData.map(function (country, index) {
-          return (
-            <Card>
-              <Accordion.Toggle
-                as={Card.Header}
-                eventKey={index}
-                onClick={search(country)}
-              >
-                {/* Card Title */}
-                {country}
-              </Accordion.Toggle>
-
-              <Accordion.Collapse eventKey={index}>
-                {/* Card Body */}
-                {articles.splice(0, 5).map((article) => {
-                  return (
-                    <div>
-                      {article.title}
-                      {article.author}
-                    </div>
-                  );
-                })}
-                ;
-              </Accordion.Collapse>
-            </Card>
-          );
-        })}
-        ;
-      </Accordion>
+        
     </div>
+    
   );
 }
 
