@@ -1,4 +1,3 @@
-// import React from "react";
 import "./App.css";
 import Map from "./Components/reactmap";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -12,6 +11,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Signup} />
           <Route exact path="/Login" component={Login} />
+          <Route exact path="/Map" component={Map} />
         </Switch>
       </Router>
     </div>
