@@ -3,9 +3,7 @@ import "./popup.css";
 
 function Popup(props) {
     return (
-        <div style={{
-            display: props.display ? "block": "none"
-          }}>
+        <div>
             <h3>{props.title}</h3>
             <ul className="news">
                 <li><strong>Content:</strong> {props.content}</li>
