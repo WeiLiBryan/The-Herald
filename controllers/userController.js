@@ -42,7 +42,7 @@ module.exports = {
       {username : req.user.username}
     ).then(function(data) {
       console.log("userInfo", data);
-      res.json();
+      res.json(data);
     }).catch((err) => res.status(422).json(err));
   }
 
