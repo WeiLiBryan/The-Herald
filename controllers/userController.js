@@ -18,12 +18,23 @@ module.exports = {
         res.json();
       }
     });
+  },
+
+  update: function (req, res) {
+    console.log("update topic =====>");
+    console.log("Object.keys(req.body)", Object.keys(req.body)[0]);
+    console.log("req.user", req.user);
+    db.User.findOneAndUpdate(
+      { username: req.user.username },
+      { $push: { topic: Object.keys(req.body)[0] } }
+    )
+      .then(function (data) {
+        console.log("updated", data);
+        // db.User.save();
+        // console.log("db.User", db.User);
+        res.json();
+      })
+      .catch((err) => res.status(422).json(err));
   }
-  
-  // create: function (req, res) {
-  //     db.User.create(req.body).then( function (user) {
-  //         console.log(user);
-  //         res.send(user)
-  //     })
-  // }
+
 };

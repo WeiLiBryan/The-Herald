@@ -6,7 +6,7 @@ SALT_WORK_FACTOR = 10;
 const userSchema = new Schema ({
     username: {type: String, required: true, index: { unique: true }},
     password: {type: String, required: true},
-    topic: {type :String}
+    topic: [{type :String}]
   });
 
 userSchema.pre("save", function(next) {
