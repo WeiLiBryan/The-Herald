@@ -22,6 +22,7 @@ function Map() {
 
   const [articles, setArticles] = useState([]);
   const [display, setDisplay] = useState(false);
+  const [currentCountry, setCurrentCountry] =useState("");
 
   const handleCountrySel = function handleCountrySel(e) {
     console.log("e.features", e.features);
@@ -30,6 +31,7 @@ function Map() {
     if (countryName === undefined) {
       return;
     }
+    setCurrentCountry(countryName);
     console.log("countryName", countryName);
 
     API.newsArticles(countryName).then(function (res) {
@@ -72,6 +74,13 @@ function Map() {
     }
   };
 
+
+
+  const Subscribe = function () {
+    var countryName = currentCountry
+    API.updateTopic(countryName)
+  }
+
   return (
     <div className="main">
       <div
@@ -79,7 +88,7 @@ function Map() {
         style={{
           display: display ? "block" : "none",
         }}
-      >
+      ><button onClick={Subscribe}>Subscribe</button>
         {articles.splice(0, 5).map((item) => {
           return (
             <PopupDiv
@@ -89,8 +98,7 @@ function Map() {
               content={item.content}
               description={item.description}
               author={item.author}
-              image={item.urlToImage}
-            />
+              image={item.urlToImage} />
           );
         })}
       </div>
