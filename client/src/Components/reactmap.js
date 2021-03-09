@@ -20,6 +20,7 @@ function Map( { articleSet, changeDisplayState }) {
     minZoom: 2,
   });
 
+
   const handleCountrySel = function handleCountrySel(e) {
     // console.log("e.features", e.features);
     changeDisplayState(true);
@@ -30,6 +31,7 @@ function Map( { articleSet, changeDisplayState }) {
       return;
     }
 
+    
     console.log("countryName", countryName);
 
     API.newsArticles(countryName).then(function (res) {
@@ -38,60 +40,48 @@ function Map( { articleSet, changeDisplayState }) {
       articleSet(data);
     });
 
-    // const feature = e.features[0];
-    // if (feature) {
-    //   // calculate the bounding box of the feature
-    //   const [minLng, minLat, maxLng, maxLat] = bbox(feature);
-    //   // construct a viewport instance from the current state
-    //   const vp = new WebMercatorViewport(viewport);
-    //   // console.log("WebMercatorViewport", vp);
-    //   const { longitude, latitude, zoom } = vp.fitBounds(
-    //     [
-    //       [minLng, minLat],
-    //       [maxLng, maxLat],
-    //     ],
-    //     {
-    //       padding: 40,
-    //     }
-    //   );
+    const feature = e.features[0];
+    if (feature) {
+      // calculate the bounding box of the feature
+      const [minLng, minLat, maxLng, maxLat] = bbox(feature);
+      // construct a viewport instance from the current state
+      const vp = new WebMercatorViewport(viewport);
+      // console.log("WebMercatorViewport", vp);
+      const { longitude, latitude, zoom } = vp.fitBounds(
+        [
+          [minLng, minLat],
+          [maxLng, maxLat],
+        ],
+        {
+          padding: 40,
+        }
+      );
 
-    //   setViewport(
-    //     {
-    //       ...viewport,
-    //       longitude,
-    //       latitude,
-    //       zoom,
-    //       transitionInterpolator: new LinearInterpolator({
-    //         around: [e.offsetCenter.x, e.offsetCenter.y],
-    //       }),
-    //       transitionDuration: 1000,
-    //     },
-    //     []
-    //   );
-    // }
+      setViewport(
+        {
+          ...viewport,
+          longitude,
+          latitude,
+          zoom,
+          transitionInterpolator: new LinearInterpolator({
+            around: [e.offsetCenter.x, e.offsetCenter.y],
+          }),
+          transitionDuration: 1000,
+        },
+        []
+      );
+    }
   };
+
+
+
+  const Subscribe = function () {
+    var countryName = currentCountry
+    API.updateTopic(countryName)
+  }
 
   return (
     <div className="main">
-      {/* <div
-        className="popup"
-        style={{
-          display: display ? "block" : "none",
-        }}
-      >
-        {articles.splice(0, 5).map((item) => {
-          return (
-            <PopupDiv
-              id={0}
-              title={item.title}
-              content={item.content}
-              description={item.description}
-              author={item.author}
-              image={item.urlToImage}
-            />
-          );
-        })}
-      </div> */}
 
       <ReactMapGL
         {...viewport}

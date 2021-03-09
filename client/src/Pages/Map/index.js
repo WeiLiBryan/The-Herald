@@ -39,21 +39,13 @@ function MapPage() {
                 })}
 
             </div>
-            {/* <Popup 
-                title={item.title}
-                content={item.content}
-                description={item.description}
-                author={item.author}
-                image={item.urlToImage}
-            /> */}
-
 
             <Map
                 articleSet={articleSet}
                 changeDisplayState={changeDisplayState}
             />
         </div>
-    )
+    );
 }
 
 export default MapPage

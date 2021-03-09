@@ -9,7 +9,7 @@ const routes = require("./routes");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+mongoose.set('useFindAndModify', false);
 
 
 // middleware that allows the react server and the backend server to exchange information, can be removed or commented out when in production

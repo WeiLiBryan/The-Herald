@@ -11,8 +11,9 @@ const register = function () {
     API.registerUser({
         username : registerUsername,
         password: registerPassword
-    });
+    })
 }
+
 
 return (
     <div>
