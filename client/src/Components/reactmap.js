@@ -10,7 +10,7 @@ import API from "../utils/API.js";
 import bbox from "@turf/bbox";
 import PopupDiv from "./Popup/index.js";
 
-function Map() {
+function Map( { articleSet, changeDisplayState }) {
   const [viewport, setViewport] = useState({
     latitude: 37.7406,
     longitude: -122.4217,
@@ -20,61 +20,60 @@ function Map() {
     minZoom: 2,
   });
 
-  const [articles, setArticles] = useState([]);
-  const [display, setDisplay] = useState(false);
-
   const handleCountrySel = function handleCountrySel(e) {
-    console.log("e.features", e.features);
-    setDisplay(true);
+    // console.log("e.features", e.features);
+    changeDisplayState(true);
+    
     var countryName = e.features[0].properties.NAME;
+
     if (countryName === undefined) {
       return;
     }
+
     console.log("countryName", countryName);
 
     API.newsArticles(countryName).then(function (res) {
-      console.log("news articles", res.data.articles);
+      // console.log("news articles", res.data.articles);
       let data = res.data.articles;
-
-      setArticles(data);
+      articleSet(data);
     });
 
-    const feature = e.features[0];
-    if (feature) {
-      // calculate the bounding box of the feature
-      const [minLng, minLat, maxLng, maxLat] = bbox(feature);
-      // construct a viewport instance from the current state
-      const vp = new WebMercatorViewport(viewport);
-      console.log("WebMercatorViewport", vp);
-      const { longitude, latitude, zoom } = vp.fitBounds(
-        [
-          [minLng, minLat],
-          [maxLng, maxLat],
-        ],
-        {
-          padding: 40,
-        }
-      );
+    // const feature = e.features[0];
+    // if (feature) {
+    //   // calculate the bounding box of the feature
+    //   const [minLng, minLat, maxLng, maxLat] = bbox(feature);
+    //   // construct a viewport instance from the current state
+    //   const vp = new WebMercatorViewport(viewport);
+    //   // console.log("WebMercatorViewport", vp);
+    //   const { longitude, latitude, zoom } = vp.fitBounds(
+    //     [
+    //       [minLng, minLat],
+    //       [maxLng, maxLat],
+    //     ],
+    //     {
+    //       padding: 40,
+    //     }
+    //   );
 
-      setViewport(
-        {
-          ...viewport,
-          longitude,
-          latitude,
-          zoom,
-          transitionInterpolator: new LinearInterpolator({
-            around: [e.offsetCenter.x, e.offsetCenter.y],
-          }),
-          transitionDuration: 1000,
-        },
-        []
-      );
-    }
+    //   setViewport(
+    //     {
+    //       ...viewport,
+    //       longitude,
+    //       latitude,
+    //       zoom,
+    //       transitionInterpolator: new LinearInterpolator({
+    //         around: [e.offsetCenter.x, e.offsetCenter.y],
+    //       }),
+    //       transitionDuration: 1000,
+    //     },
+    //     []
+    //   );
+    // }
   };
 
   return (
     <div className="main">
-      <div
+      {/* <div
         className="popup"
         style={{
           display: display ? "block" : "none",
@@ -83,7 +82,6 @@ function Map() {
         {articles.splice(0, 5).map((item) => {
           return (
             <PopupDiv
-              display={display}
               id={0}
               title={item.title}
               content={item.content}
@@ -93,7 +91,7 @@ function Map() {
             />
           );
         })}
-      </div>
+      </div> */}
 
       <ReactMapGL
         {...viewport}
