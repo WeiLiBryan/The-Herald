@@ -8,9 +8,8 @@ import ReactMapGL, {
 import { styleLayer } from "./map-style";
 import API from "../utils/API.js";
 import bbox from "@turf/bbox";
-import PopupDiv from "./Popup/index.js";
 
-function Map( { articleSet, changeDisplayState }) {
+function Map( { articleSet, changeDisplayState, Subscribe}) {
   const [viewport, setViewport] = useState({
     latitude: 37.7406,
     longitude: -122.4217,
@@ -19,6 +18,8 @@ function Map( { articleSet, changeDisplayState }) {
     zoom: 2,
     minZoom: 2,
   });
+
+
 
 
   const handleCountrySel = function handleCountrySel(e) {
@@ -30,8 +31,10 @@ function Map( { articleSet, changeDisplayState }) {
     if (countryName === undefined) {
       return;
     }
-
     
+    Subscribe(countryName);
+
+      
     console.log("countryName", countryName);
 
     API.newsArticles(countryName).then(function (res) {
@@ -72,13 +75,6 @@ function Map( { articleSet, changeDisplayState }) {
       );
     }
   };
-
-
-
-  const Subscribe = function () {
-    var countryName = currentCountry
-    API.updateTopic(countryName)
-  }
 
   return (
     <div className="main">
