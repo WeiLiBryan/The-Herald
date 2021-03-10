@@ -1,9 +1,22 @@
 import React from "react";
 import "./style.css";
 import { Nav } from "react-bootstrap";
+import API from "../../utils/API";
+import { useHistory } from "react-router-dom";
+
+
 
 
 function Navbar() {
+  
+const history = useHistory();
+
+const logout = function () {
+  API.logoutUser().then(function () {
+    history.push("/login");
+  })
+};
+
   return (
     <Nav defaultActiveKey="/home" as="ul">
   <Nav.Item as="li">
@@ -19,7 +32,7 @@ function Navbar() {
     <Nav.Link href="/profile">Profile</Nav.Link>
   </Nav.Item>
   <Nav.Item as="li">
-    <Nav.Link href="#">Logout</Nav.Link>
+    <Nav.Link onClick={logout}>Logout</Nav.Link>
   </Nav.Item>
 </Nav>
   );

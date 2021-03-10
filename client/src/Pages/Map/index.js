@@ -33,10 +33,10 @@ function MapPage() {
       >
         <button onClick={Subscribe}>Subscribe</button>
 
-        {articles.splice(0, 5).map((item) => {
+        {articles.splice(0, 5).map((item, index) => {
           return (
             <Popup
-              id={0}
+              key={index}
               title={item.title}
               content={item.content}
               description={item.description}

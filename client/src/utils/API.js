@@ -33,5 +33,11 @@ export default {
         return axios.get("http://localhost:8080/api/userTopics", {
             withCredentials: true
           } )
+    },
+
+    logoutUser: function () {
+        return axios.get("http://localhost:8080/logout", {
+            withCredentials: true
+          } )
     }
 }

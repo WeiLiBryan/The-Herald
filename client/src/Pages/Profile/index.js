@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import API from "../../utils/API";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { Tab, Tabs, TabList } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import "./style.css";
 
 function NewsFeed() {
@@ -47,7 +47,7 @@ function NewsFeed() {
 
             {articles.splice(0, 10).map((article, index) => {
                 return (
-                    <a href={article.url} target="_blank">
+                    <a href={article.url} target="_blank" rel="noreferrer">
                         <div className="container-div">
                             <Card className="bg-dark text-white" to={article.url}>
                                 <Card.Img src={article.urlToImage || null ? article.urlToImage : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE4XS9WxfgNvETnRb2FpJYq1mLc8K9GRJU_w&usqp=CAU"}
