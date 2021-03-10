@@ -1,0 +1,13 @@
+.login {
+  color: blue;
+}
+.signUpContainer {
+  width: 300px;
+  margin: 50px auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+.signForm {
+  width: 80%;
+  margin: 10px auto;
+}
