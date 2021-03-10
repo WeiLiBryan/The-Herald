@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Accordion, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import API from "../../utils/API";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -37,19 +36,21 @@ function NewsFeed() {
                     console.log(country);
                     
                     return (
-                        <Tab onClick={() => search()}>{country}</Tab>
+                        <Tab onClick={() => search(country)}>{country}</Tab>
                     );
                 })}
                 {/* <Tab>Hello</Tab> */}
             </TabList>
 
                 {/* SEARCHES API WITH COUNTRY NAME AND OUTPUTS THE ARTICLES HERE */}
-            {articles.splice(0, 5).map(article => {
-                <TabPanel>
+            {articles.splice(0, 5).map((article, index) => {
+                console.log("article ======> ", article)
+                return(
+                <div key={index}>
                     <h5>{article.title}</h5>
                     <h6>{article.author}</h6>
                     <p>{article.description}</p>
-                </TabPanel>
+                </div>);
             })}
 
         </Tabs>

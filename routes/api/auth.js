@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 router.get("/", (req, res) => {
-  if (req.user !== "undefined") {
+  if (req.user) {
       // console.log("CLICK===================>", req.user);
     res.status(200).json(
         true

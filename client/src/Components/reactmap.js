@@ -9,7 +9,7 @@ import { styleLayer } from "./map-style";
 import API from "../utils/API.js";
 import bbox from "@turf/bbox";
 
-function Map( { articleSet, changeDisplayState, Subscribe}) {
+function Map( { articleSet, changeDisplayState, setCurrentCountry}) {
   const [viewport, setViewport] = useState({
     latitude: 37.7406,
     longitude: -122.4217,
@@ -18,9 +18,6 @@ function Map( { articleSet, changeDisplayState, Subscribe}) {
     zoom: 2,
     minZoom: 2,
   });
-
-
-
 
   const handleCountrySel = function handleCountrySel(e) {
     // console.log("e.features", e.features);
@@ -32,7 +29,8 @@ function Map( { articleSet, changeDisplayState, Subscribe}) {
       return;
     }
     
-    Subscribe(countryName);
+    //Subscribe(countryName);
+    setCurrentCountry(countryName)
 
       
     console.log("countryName", countryName);

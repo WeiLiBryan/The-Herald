@@ -17,11 +17,11 @@ function MapPage() {
     setDisplayState(bool);
   };
 
-  const Subscribe = function (countryName) {
-    setCurrentCountry(countryName);
-    var countryName = currentCountry;
-    API.updateTopic(countryName);
+  const Subscribe = function () {
+    API.updateTopic(currentCountry);
   };
+
+
 
   return (
     <div>
@@ -50,7 +50,7 @@ function MapPage() {
       <Map
         articleSet={articleSet}
         changeDisplayState={changeDisplayState}
-        Subscribe={Subscribe}
+        setCurrentCountry={setCurrentCountry}
       />
     </div>
   );
