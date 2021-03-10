@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactMapGL, {
   Layer,
   Source,
@@ -9,7 +9,7 @@ import { styleLayer } from "./map-style";
 import API from "../utils/API.js";
 import bbox from "@turf/bbox";
 
-function Map( { articleSet, changeDisplayState, setCurrentCountry}) {
+function Map( { articleSet, changeDisplayState, setCurrentCountry, date, currentCountry}) {
   const [viewport, setViewport] = useState({
     latitude: 37.7406,
     longitude: -122.4217,
@@ -18,8 +18,8 @@ function Map( { articleSet, changeDisplayState, setCurrentCountry}) {
     zoom: 2,
     minZoom: 2,
   });
-
-  const handleCountrySel = function handleCountrySel(e) {
+  
+const handleCountrySel = function (e) {
     // console.log("e.features", e.features);
     changeDisplayState(true);
     
@@ -30,12 +30,10 @@ function Map( { articleSet, changeDisplayState, setCurrentCountry}) {
     }
     
     //Subscribe(countryName);
-    setCurrentCountry(countryName)
+    setCurrentCountry(countryName);
 
-      
-    console.log("countryName", countryName);
 
-    API.newsArticles(countryName).then(function (res) {
+    API.newsArticles(currentCountry, date).then(function (res) {
       // console.log("news articles", res.data.articles);
       let data = res.data.articles;
       articleSet(data);

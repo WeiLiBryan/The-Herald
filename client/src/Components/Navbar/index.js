@@ -4,9 +4,6 @@ import { Nav } from "react-bootstrap";
 import API from "../../utils/API";
 import { useHistory } from "react-router-dom";
 
-
-
-
 function Navbar() {
   
 const history = useHistory();

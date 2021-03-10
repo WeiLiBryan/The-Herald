@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import Map from "../../Components/reactmap";
 import Popup from "../../Components/Popup";
@@ -8,6 +8,10 @@ function MapPage() {
   const [articles, setArticles] = useState([]);
   const [displayState, setDisplayState] = useState(false);
   const [currentCountry, setCurrentCountry] = useState("");
+  const [date, setDate] = useState("");
+  
+  const { DateTime } = require("luxon");
+  const now = DateTime.now();
 
   const articleSet = (data) => {
     setArticles(data);
@@ -21,7 +25,20 @@ function MapPage() {
     API.updateTopic(currentCountry);
   };
 
+  const dateTime = function (str) {
+    setDate(str)
+  }
+  
+  useEffect(function () {
+    API.newsArticles(currentCountry, date).then(function (res) {
+      // console.log("news articles", res.data.articles);
+      let data = res.data.articles;
+      articleSet(data);
+    });
+}, [date]);
 
+
+  
 
   return (
     <div>
@@ -32,6 +49,9 @@ function MapPage() {
         }}
       >
         <button onClick={Subscribe}>Subscribe</button>
+        <button onClick={()=>dateTime("&from=" + now.toISODate())}>Daily</button>
+        <button onClick={()=>dateTime("&from=" + now.plus({ days: -7 }).toISODate())}>Weekly</button>
+        <button onClick={()=>dateTime("&from=" + now.plus({ days: -28 }).toISODate())}>Monthly</button>
 
         {articles.splice(0, 5).map((item, index) => {
           return (
@@ -42,6 +62,7 @@ function MapPage() {
               description={item.description}
               author={item.author}
               image={item.urlToImage}
+              link={item.url}
             />
           );
         })}
@@ -51,6 +72,8 @@ function MapPage() {
         articleSet={articleSet}
         changeDisplayState={changeDisplayState}
         setCurrentCountry={setCurrentCountry}
+        currentCountry={currentCountry}
+        date={date}
       />
     </div>
   );
