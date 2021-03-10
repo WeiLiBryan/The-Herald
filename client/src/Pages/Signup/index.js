@@ -32,7 +32,13 @@ function Signup() {
           placeholder="password"
           onChange={(e) => setRegisterPassword(e.target.value)}
         />
-        <button onClick={register}>Submit</button>
+        <button
+          type="button"
+          className="btn btn-outline-danger"
+          onClick={register}
+        >
+          Submit
+        </button>
       </div>
     </div>
   );

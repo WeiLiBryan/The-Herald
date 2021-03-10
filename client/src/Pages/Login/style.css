@@ -1,10 +1,10 @@
 .login {
-  color: blue;
+  color: rgba(94, 41, 5, 0.767);
 }
 .signUpContainer {
   width: 500px;
   margin: 50px auto;
-  background-color: #64c039;
+  background-color: #51a3b89f;
   border-radius: 8px;
   text-align: center;
 }
