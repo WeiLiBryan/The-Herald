@@ -1,19 +1,36 @@
-import React, { useEffect } from "react";
-import "./style.css"
-import API from "../../utils/API"
+import React, { useState, useEffect } from "react";
+import { Accordion, Card } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import API from "../../utils/API";
 
+function NewsFeed() {
+  const [userData, setUserData] = useState([]);
+  const [articles, setArticles] = useState([]);
 
+  const getUserData = function () {
+    API.getUserInfo().then(function (res) {
+      console.log("RESPONSE ==========>", res.data.topic);
+      setUserData(res.data.topic);
+    });
+  };
 
-function Profile () {
+  useEffect(function () {
+    getUserData();
+  }, []);
+
+  const search = (country) => {
+    API.newsArticles(country).then((res) => {
+      let data = res.data.articles;
+      setArticles(data);
+    });
+  };
+
+  return (
+    <div>
+        
+    </div>
     
-    useEffect(() => {
-        API.getUserInfo()
-      }, []);
-    
-    return (
-        <div>user profile
-        </div>
-    )
+  );
 }
 
-export default Profile
+export default NewsFeed;
