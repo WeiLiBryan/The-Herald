@@ -31,7 +31,7 @@ function MapPage() {
           display: displayState ? "block" : "none",
         }}
       >
-        <button onClick={Subscribe}>Subrscribe</button>
+        <button onClick={Subscribe}>Subscribe</button>
 
         {articles.splice(0, 5).map((item) => {
           return (
