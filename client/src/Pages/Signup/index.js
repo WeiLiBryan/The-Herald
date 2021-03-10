@@ -1,33 +1,40 @@
-import React, {useState} from "react";
-import "./style.css"
-import API from "../../utils/API"
+import React, { useState } from "react";
+import "./style.css";
+import API from "../../utils/API";
 import { useHistory } from "react-router-dom";
 
 function Signup() {
-    const [registerUsername, setRegisterUsername] = useState("");
-    const [registerPassword, setRegisterPassword] = useState("");
-    const history = useHistory();
+  const [registerUsername, setRegisterUsername] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const history = useHistory();
 
-
-const register = function () {
+  const register = function () {
     API.registerUser({
-        username : registerUsername,
-        password: registerPassword
-    }).then(()=>{
-        // console.log("go to login")
-        history.push("/login");
-    })
-}
+      username: registerUsername,
+      password: registerPassword,
+    }).then(() => {
+      // console.log("go to login")
+      history.push("/login");
+    });
+  };
 
-
-return (
-    <div>
+  return (
+    <div className="registerContainer">
+      <div className="Register">
         <h1>Register</h1>
-        <input placeholder = "username" onChange={e => setRegisterUsername(e.target.value)}/>
-        <input placeholder = "password" onChange={e => setRegisterPassword(e.target.value)}/>
+        <input
+          className="RegisterForm"
+          placeholder="username"
+          onChange={(e) => setRegisterUsername(e.target.value)}
+        />
+        <input
+          className="RegisterForm"
+          placeholder="password"
+          onChange={(e) => setRegisterPassword(e.target.value)}
+        />
         <button onClick={register}>Submit</button>
+      </div>
     </div>
-);
-
+  );
 }
 export default Signup;

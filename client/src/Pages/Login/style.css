@@ -2,12 +2,12 @@
   color: blue;
 }
 .signUpContainer {
-  width: 300px;
+  width: 500px;
   margin: 50px auto;
-  background-color: #ffffff;
+  background-color: #64c039;
   border-radius: 8px;
 }
 .signForm {
-  width: 80%;
+  width: 95%;
   margin: 10px auto;
 }
