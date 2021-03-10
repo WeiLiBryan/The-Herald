@@ -8,11 +8,13 @@ import Login from "./Pages/Login"
 import MapPage from "./Pages/Map"
 import NewsFeed from "./Pages/Profile"
 import PrivateRoute from "./utils/PrivateRoute"
+import Navbar from "./Components/Navbar";
 
 function App() {
 
     return (
       <div className="App">
+       <Navbar/>
        <Router>
         <Switch>
           <Route exact path="/" component = {Signup} />
