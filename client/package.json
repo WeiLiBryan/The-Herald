@@ -8,7 +8,6 @@
     "@testing-library/user-event": "^12.7.3",
     "@turf/bbox": "^6.3.0",
     "axios": "^0.21.1",
-
     "bootstrap": "^4.6.0",
     "install": "^0.13.0",
     "npm": "^7.6.2",
