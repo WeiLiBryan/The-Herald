@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Tab, Tabs, TabList } from 'react-tabs';
 import "./style.css";
 import Map from "../../Components/reactmap";
 import Popup from "../../Components/Popup";
@@ -48,12 +49,15 @@ function MapPage() {
           display: displayState ? "block" : "none",
         }}
       >
-        <button onClick={Subscribe}>Subscribe</button>
-        <button onClick={()=>dateTime("&from=" + now.toISODate())}>Daily</button>
-        <button onClick={()=>dateTime("&from=" + now.plus({ days: -7 }).toISODate())}>Weekly</button>
-        <button onClick={()=>dateTime("&from=" + now.plus({ days: -28 }).toISODate())}>Monthly</button>
-
-        {articles.splice(0, 5).map((item, index) => {
+        <button onClick={Subscribe}>Bookmark</button>
+        <Tabs>
+  <TabList>
+    {/* MAPS THE SAVED COUNTRIES FOR TAB HEADERS*/}
+    <Tab onClick={()=>dateTime("&from=" + now.toISODate())}>Daily</Tab>
+    <Tab onClick={()=>dateTime("&from=" + now.plus({ days: -7 }).toISODate())}>Weekly</Tab>
+    <Tab onClick={()=>dateTime("&from=" + now.plus({ days: -28 }).toISODate())}>Monthly</Tab>
+  </TabList>
+  {articles.splice(0, 5).map((item, index) => {
           return (
             <Popup
               key={index}
@@ -66,6 +70,7 @@ function MapPage() {
             />
           );
         })}
+</Tabs>
       </div>
 
       <Map

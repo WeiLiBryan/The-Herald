@@ -2,8 +2,11 @@ import axios from "axios";
 
 export default {
     newsArticles: function(search, date) {
-        console.log("DATEINAXIOS", date);
         return axios.get("https://newsapi.org/v2/everything?qInTitle=" + search + date +"&language=en&sortBy=popularity&apiKey=054d0cdf9eb94eea9eae7aa699c8b579")
+    },
+
+    newsArticlesProfile: function(search) {
+        return axios.get("https://newsapi.org/v2/everything?qInTitle=" + search +"&language=en&sortBy=popularity&apiKey=054d0cdf9eb94eea9eae7aa699c8b579")
     },
 
     // NOTE: axios routes are for development only, add a ternary statement or update once in production
