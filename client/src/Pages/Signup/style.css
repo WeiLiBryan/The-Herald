@@ -1,0 +1,14 @@
+.Register {
+  color: rgba(94, 41, 5, 0.767);
+}
+.RegisterForm {
+  width: 95%;
+  margin: 10px auto;
+}
+.registerContainer {
+  width: 500px;
+  margin: 60px auto;
+  background-color: #64c039;
+  border-radius: 8px;
+  text-align: center;
+}
