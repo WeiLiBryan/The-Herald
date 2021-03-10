@@ -41,38 +41,30 @@ function NewsFeed() {
                         <Tab onClick={() => search(country)}>{country}</Tab>
                     );
                 })}
-                {/* <Tab>Hello</Tab> */}
             </TabList>
 
             {/* SEARCHES API WITH COUNTRY NAME AND OUTPUTS THE ARTICLES HERE */}
-            {/* {articles.splice(0, 5).map((article, index) => {
-                console.log("article ======> ", article)
-                return(
-                <div key={index}>
-                    <h5 className="title">{article.title}</h5>
-                    <h6>{article.author}</h6>
-                    <p>{article.description}</p>
-                </div>);
-            })} */}
 
             {articles.splice(0, 10).map((article, index) => {
                 return (
-                    <div className="container-div">
-                        <Card className="bg-dark text-white">
-                            <Card.Img src={article.urlToImage || null ? article.urlToImage : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE4XS9WxfgNvETnRb2FpJYq1mLc8K9GRJU_w&usqp=CAU"}
-                                alt="Card image"
-                            />
-                            <div className="imgOverlay">
-                                <Card.ImgOverlay className="opacity-.25">
-                                    <Card.Title><span className="title">{article.title}</span></Card.Title>
-                                    <Card.Text >
-                                        <span className="desc">{article.description}</span>
-                                    </Card.Text>
-                                    <Card.Text><span className="desc">By: {article.author}</span></Card.Text>
-                                </Card.ImgOverlay>
-                            </div>
-                        </Card>
-                    </div>
+                    <a href={article.url} target="_blank">
+                        <div className="container-div">
+                            <Card className="bg-dark text-white" to={article.url}>
+                                <Card.Img src={article.urlToImage || null ? article.urlToImage : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE4XS9WxfgNvETnRb2FpJYq1mLc8K9GRJU_w&usqp=CAU"}
+                                    alt="Card image"
+                                />
+                                <div className="imgOverlay">
+                                    <Card.ImgOverlay className="opacity-.25">
+                                        <Card.Title><span className="title">{article.title}</span></Card.Title>
+                                        <Card.Text >
+                                            <span className="desc">{article.description}</span>
+                                        </Card.Text>
+                                        <Card.Text><span className="desc">By: {article.author}</span></Card.Text>
+                                    </Card.ImgOverlay>
+                                </div>
+                            </Card>
+                        </div>
+                    </a>
                 );
             })}
         </Tabs>
