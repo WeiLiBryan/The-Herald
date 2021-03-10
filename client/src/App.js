@@ -7,32 +7,24 @@ import Signup from "./Pages/Signup"
 import Login from "./Pages/Login"
 import MapPage from "./Pages/Map"
 import NewsFeed from "./Pages/Profile"
-import API from "./utils/API"
+import PrivateRoute from "./utils/PrivateRoute"
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(false);
+    return (
+      <div className="App">
+       <Router>
+        <Switch>
+          <Route exact path="/" component = {Signup} />
+          <Route exact path="/Login" component={Login} />
+          <PrivateRoute exact path="/Map" component = {MapPage} />
+          <PrivateRoute exact path="/Profile" component = {NewsFeed} />
+        </Switch>
+      </Router>
+      </div>
+    );
+  
+  }
 
-  useEffect(() => {
-    console.log("API", API);
-    API.authUser().then( function (res) {
-      console.log("WHO GOES THERE ========>", res)
-    })
-  }, []);
-
-
-  return (
-    <div className="App">
-     <Router>
-      <Switch>
-        <Route exact path="/" component = {Signup} />
-        <Route exact path="/Login" component={Login} />
-        <Route exact path="/Map" component = {MapPage} />
-        <Route exact path="/Profile" component = {NewsFeed} />
-      </Switch>
-    </Router>
-    </div>
-  );
-}
 
 export default App;

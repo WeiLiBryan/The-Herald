@@ -17,11 +17,11 @@ function MapPage() {
     setDisplayState(bool);
   };
 
-  const Subscribe = function (countryName) {
-    setCurrentCountry(countryName);
-    var countryName = currentCountry;
-    API.updateTopic(countryName);
+  const Subscribe = function () {
+    API.updateTopic(currentCountry);
   };
+
+
 
   return (
     <div>
@@ -31,7 +31,7 @@ function MapPage() {
           display: displayState ? "block" : "none",
         }}
       >
-        <button onClick={Subscribe}>Subrscribe</button>
+        <button onClick={Subscribe}>Subscribe</button>
 
         {articles.splice(0, 5).map((item) => {
           return (
@@ -50,7 +50,7 @@ function MapPage() {
       <Map
         articleSet={articleSet}
         changeDisplayState={changeDisplayState}
-        Subscribe={Subscribe}
+        setCurrentCountry={setCurrentCountry}
       />
     </div>
   );

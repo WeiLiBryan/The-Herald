@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export default {
-    newsArticles: function(search, category, date) {
+    newsArticles: function(search, date) {
         
-        return axios.get("https://newsapi.org/v2/everything?qInTitle=" +search+ "&language=en&sortBy=popularity&from=2021-03-01&apiKey=71fb2981b00b485081e52dd86b522482")
+        return axios.get("https://newsapi.org/v2/everything?qInTitle=" + search +"&language=en&sortBy=popularity&from=2021-03-01&apiKey=054d0cdf9eb94eea9eae7aa699c8b579")
     },
 
     // NOTE: axios routes are for development only, add a ternary statement or update once in production
