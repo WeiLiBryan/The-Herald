@@ -21,8 +21,6 @@ function MapPage() {
     API.updateTopic(currentCountry);
   };
 
-
-
   return (
     <div>
       <div
@@ -31,7 +29,13 @@ function MapPage() {
           display: displayState ? "block" : "none",
         }}
       >
-        <button onClick={Subscribe}>Subscribe</button>
+        <button
+          type="button"
+          className="btn btn-outline-info"
+          onClick={Subscribe}
+        >
+          Subscribe
+        </button>
 
         {articles.splice(0, 5).map((item) => {
           return (
