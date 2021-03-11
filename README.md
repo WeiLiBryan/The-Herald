@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# Herald
+Herald is a news hub / aggregator that allows users to pull the latest articles based on geo-political locations.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Site](/client/public/assets/Site-Image.png)
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+|                                     |                                         |                                         |
+| :---------------------------------- | :-------------------------------------- | :-------------------------------------- |
+| [Project Introduction](#Herald)     | [Table of Contents](#table-of-contents) | [Demo](#Demo)                           |
+| [Technologies](#technologies)       | [Deployed Link](#deployed-link)         | [Authors](#authors)                     |
+| [Acknowledgments](#acknowledgments) | [License](#license)                     |
+---
 
-### `npm start`
+## Demo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![Site](/client/public/assets/Site-Demo.gif)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Technologies
 
-### `npm test`
+* [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+* [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+* [Javascript](https://developer.mozilla.org/en-US/docs/Web/Javascript)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* [NodeJS](https://nodejs.org/en/)
+* [Axios](https://www.npmjs.com/package/axios)
+* [Express](https://expressjs.com/)
+* [Mongoose](https://mongoosejs.com/)
+* [Passport](http://www.passportjs.org/)
+* [bcrypt](https://www.npmjs.com/package/bcryptjs)
 
-### `npm run build`
+* [NewsAPI](https://newsapi.org/)
+* [Mapbox-GL](https://docs.mapbox.com/mapbox-gl-js/api/)
+* [React-Bootstrap](https://react-bootstrap.github.io/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Deployed Link
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* [See Live Site]()
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Authors
 
-### `npm run eject`
+Abuye Mamuye
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+-[Link to Git Hub](https://github.com/AbuyeM1)
+-[Link to LinkedIn](https://www.linkedin.com/in/abuye-mamuye-5a49921b0/)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+William Bryan
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+-[Link to Git Hub](https://github.com/WeiLiBryan)
+-[Link to LinkedIn](https://www.linkedin.com/in/coleman-buffa-0a12a5201/)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Spencer Christy
 
-## Learn More
+-[Link to Git Hub](https://github.com/spenrad)
+-[Link to LinkedIn](https://www.linkedin.com/in/spencer-christy/)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Acknowledgments
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Many thanks to UCB Bootcamp Instructional and Support Staff
 
-### Code Splitting
+-[Stack Overflow](https://stackoverflow.com)
+-[w3schools](https://w3schools.com)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## License
 
-### Analyzing the Bundle Size
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### [Back to Table of Contents](#table-of-contents) 
