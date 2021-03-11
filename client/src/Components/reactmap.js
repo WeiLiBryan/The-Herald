@@ -8,6 +8,9 @@ import ReactMapGL, {
 import { styleLayer } from "./map-style";
 import API from "../utils/API.js";
 import bbox from "@turf/bbox";
+import mapboxgl from "mapbox-gl"
+
+mapboxgl.workerClass = require('mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 function Map( { articleSet, changeDisplayState, setCurrentCountry, date}) {
   const [viewport, setViewport] = useState({
@@ -19,7 +22,7 @@ function Map( { articleSet, changeDisplayState, setCurrentCountry, date}) {
     minZoom: 2,
   });
 
-mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+
   
 const handleCountrySel = function (e) {
     // console.log("e.features", e.features);
