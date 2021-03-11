@@ -18,6 +18,8 @@ function Map( { articleSet, changeDisplayState, setCurrentCountry, date}) {
     zoom: 2,
     minZoom: 2,
   });
+
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
   
 const handleCountrySel = function (e) {
     // console.log("e.features", e.features);
