@@ -10,7 +10,7 @@ function MapPage() {
   const [displayState, setDisplayState] = useState(false);
   const [currentCountry, setCurrentCountry] = useState("");
   const [date, setDate] = useState("");
-  
+
   const { DateTime } = require("luxon");
   const now = DateTime.now();
 
@@ -29,7 +29,7 @@ function MapPage() {
   const dateTime = function (str) {
     setDate(str)
   }
-  
+
   useEffect(function () {
     API.newsArticles(currentCountry, date).then(function (res) {
       // console.log("news articles", res.data.articles);
@@ -37,10 +37,11 @@ function MapPage() {
       // console.log("ARTICLES", data)
       articleSet(data);
     });
-}, [date]);
+  }, [date]);
 
-// console.log("ARTICLES STATE", articles);
-// console.log("COUNTRY STATE", currentCountry);
+  // console.log("ARTICLES STATE", articles);
+  // console.log("COUNTRY STATE", currentCountry);
+
 
   return (
     <div>
@@ -50,29 +51,40 @@ function MapPage() {
           display: displayState ? "block" : "none",
         }}
       >
-        <button onClick={Subscribe}>Bookmark</button>
+
+        <div className="popupHeader">
+          <div className="popupBtns">
+            <button className="btn btn-danger closeBtn" onClick={() => setDisplayState(false)}>x</button>
+            <button className="btn btn-primary btn-rounded" onClick={Subscribe}>Bookmark</button>
+          </div>
+
+          <br />
+          <h4 className="countryHeader">{currentCountry}</h4>
+          <br />
+        </div>
+
         <Tabs>
-  <TabList>
-    {/* MAPS THE SAVED COUNTRIES FOR TAB HEADERS*/}
-    <Tab onClick={()=>dateTime("")}>Top News</Tab>
-    <Tab onClick={()=>dateTime("&from=" + now.toISODate())}>Daily</Tab>
-    <Tab onClick={()=>dateTime("&from=" + now.plus({ days: -7 }).toISODate())}>Weekly</Tab>
-    <Tab onClick={()=>dateTime("&from=" + now.plus({ days: -28 }).toISODate())}>Monthly</Tab>
-  </TabList>
-  {articles.map((item, index) => {
-          return (
-            <Popup
-              key={index}
-              title={item.title}
-              content={item.content}
-              description={item.description}
-              author={item.author}
-              image={item.urlToImage}
-              link={item.url}
-            />
-          );
-        })}
-</Tabs>
+          <TabList className="tabHeaders">
+            {/* MAPS THE SAVED COUNTRIES FOR TAB HEADERS*/}
+            <Tab onClick={() => dateTime("")}>Top News</Tab>
+            <Tab onClick={() => dateTime("&from=" + now.toISODate())}>Daily</Tab>
+            <Tab onClick={() => dateTime("&from=" + now.plus({ days: -7 }).toISODate())}>Weekly</Tab>
+            <Tab onClick={() => dateTime("&from=" + now.plus({ days: -28 }).toISODate())}>Monthly</Tab>
+          </TabList>
+          {articles.map((item, index) => {
+            return (
+              <Popup
+                key={index}
+                title={item.title}
+                content={item.content}
+                description={item.description}
+                author={item.author}
+                image={item.urlToImage}
+                url={item.url}
+              />
+            );
+          })}
+        </Tabs>
       </div>
 
       <Map
