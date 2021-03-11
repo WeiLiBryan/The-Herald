@@ -35,7 +35,7 @@ Herald is a news hub / aggregator that allows users to pull the latest articles 
 
 ## Deployed Link
 
-* [See Live Site]()
+* [See Live Site](https://herald-worldnewapp.herokuapp.com/)
 
 ## Authors
 
