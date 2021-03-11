@@ -14,18 +14,7 @@ function Navbar() {
   };
 
   return (
-    <div className="navbar navbar-expand-lg navbar-light bg-gray">
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarTogglerDemo01"
-        aria-controls="navbarTogglerDemo01"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
+    <nav className="navbar navbar-expand-lg navbar-light bg-gray">
       <Nav defaultActiveKey="/home" as="ul">
         <Nav.Item as="li">
           <Nav.Link href="/">Home</Nav.Link>
@@ -43,7 +32,7 @@ function Navbar() {
           <Nav.Link onClick={logout}>Logout</Nav.Link>
         </Nav.Item>
       </Nav>
-    </div>
+    </nav>
   );
 }
 export default Navbar;
