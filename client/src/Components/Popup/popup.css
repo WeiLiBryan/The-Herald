@@ -1,19 +1,35 @@
 .popup {
   background: rgba(16,52,166,.4);
-  position: absolute;
-  z-index: 1;
-  border-radius: 3px;
-  width: 35%;
-  height: 90vh;
-  border: 1px solid rgba(14, 13, 13, 0.4);
   font-family: "Open Sans", sans-serif;
   font-size: 20px;
-  left: 0;
-  top: 8%;
-  padding: 10px;
-  overflow-y: scroll hidden;
+
+  border-radius: 3px;
+  border: 1px solid rgba(14, 13, 13, 0.4);
   border-radius: 5%;
+  
+  width: 35%;
   align-content: center;
+  padding: 10px;
+  
+  height: 90%;
+  position: absolute;
+  left: 0;
+  top: 64px;
+  z-index: 1;
+  
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+/* .article-container {
+  flex: 1;
+  overflow-y: scroll;
+  justify-content: center;
+} */
+
+.popup::-webkit-scrollbar {
+  display: none;
 }
 
 .container {
@@ -41,5 +57,5 @@
 }
 
 .closeBtn {
-  background-color: red;
+  background-color: red!important
 }
