@@ -26,7 +26,7 @@ const logout = function () {
     <Nav.Link href="/profile">Profile</Nav.Link>
   </Nav.Item>
   <Nav.Item as="li">
-    <Nav.Link href="/" onClick={logout}>Logout</Nav.Link>
+    <Nav.Link href="/login" onClick={logout}>Logout</Nav.Link>
   </Nav.Item> 
 </Nav>
   );
