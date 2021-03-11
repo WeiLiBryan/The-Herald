@@ -1,1 +1,23 @@
+#brand {
+    font-size: 2rem;
+    font-weight: 900;
+    color:rgb(211, 157, 20);
+}
+
+#brand:hover {
+    color:rgba(211, 157, 20, .7);
+}
+
+.nav-li {
+    font-size: 1.10rem;
+    font-weight: 700;
+    color:rgba(211, 157, 20, .80);
+    margin-top: 13px;
+    margin-left: 20px;
+}
+
+.nav-li:hover {
+    color:rgba(211, 157, 20, .40);  
+}
+
 

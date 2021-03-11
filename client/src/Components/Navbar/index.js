@@ -13,20 +13,21 @@ const logout = function () {
 
   return (
     <Nav defaultActiveKey="/home" as="ul">
-  <Nav.Item as="li">
-    <Nav.Link href="/">Home</Nav.Link>
+  <Nav.Item as="li" >
+    <Nav.Link href="/" id="brand">Herald</Nav.Link>
   </Nav.Item>
-  <Nav.Item as="li">
-    <Nav.Link href="/login">Login</Nav.Link>
+  
+  <Nav.Item as="li" >
+    <Nav.Link href="/map" className="nav-li">Map</Nav.Link>
   </Nav.Item>
-  <Nav.Item as="li">
-    <Nav.Link href="/map">Map</Nav.Link>
+  <Nav.Item as="li" >
+    <Nav.Link href="/profile" className="nav-li">Profile</Nav.Link>
   </Nav.Item>
-  <Nav.Item as="li">
-    <Nav.Link href="/profile">Profile</Nav.Link>
+  <Nav.Item as="li" >
+    <Nav.Link href="/login" className="nav-li">Login</Nav.Link>
   </Nav.Item>
-  <Nav.Item as="li">
-    <Nav.Link href="/login" onClick={logout}>Logout</Nav.Link>
+  <Nav.Item as="li" >
+    <Nav.Link href="/login" className="nav-li" onClick={logout}>Logout</Nav.Link>
   </Nav.Item> 
 </Nav>
   );

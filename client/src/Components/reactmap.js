@@ -34,7 +34,6 @@ const handleCountrySel = function (e) {
 
     // console.log("you clicked on ===>", countryName);
 
-
     API.newsArticles(countryName, date).then(function (res) {
       // console.log("news articles", res.data.articles);
       let data = res.data.articles;

@@ -42,8 +42,18 @@
   position: relative;
   width: 50%;
   align-self: center;
+  border-radius: 30px
 }
 
 .infoTitle {
   color: goldenrod;
+}
+
+.signForm {
+  border-radius: 30px;
+  text-indent: 12px;
+}
+
+.signForm:focus {
+  outline: none;
 }

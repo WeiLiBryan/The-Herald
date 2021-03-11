@@ -36,18 +36,19 @@ function Signup() {
         <div className="div-box">
           <h1>Register</h1>
           <input
-            className="RegisterForm"
-            placeholder="username"
+            className="signForm"
+            placeholder="Username"
             onChange={(e) => setRegisterUsername(e.target.value)}
           />
           <input
-            className="RegisterForm"
-            placeholder="password"
+            className="signForm"
+            type="password"
+            placeholder="Password"
             onChange={(e) => setRegisterPassword(e.target.value)}
           />
-          <button onClick={register}>Submit</button>
+          <button className="btn" onClick={register}>Submit</button>
           <hr />
-          <a href="/login"><h6>Already Registered?</h6></a>
+          <a href="/login" id="homebutts"><h6 className="acctLink">Already Registered?</h6></a>
         </div>
       </div>
     </div>

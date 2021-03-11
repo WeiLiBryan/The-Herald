@@ -42,8 +42,6 @@ function MapPage() {
 // console.log("ARTICLES STATE", articles);
 // console.log("COUNTRY STATE", currentCountry);
 
-  
-
   return (
     <div>
       <div
