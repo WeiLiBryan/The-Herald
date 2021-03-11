@@ -1,20 +1,45 @@
 .popup {
-  background: #fff;
+  background: rgba(16,52,166,.4);
   position: absolute;
   z-index: 1;
   border-radius: 3px;
-  width: 40%;
+  width: 35%;
   height: 90vh;
   border: 1px solid rgba(14, 13, 13, 0.4);
   font-family: "Open Sans", sans-serif;
   font-size: 20px;
-  right: 0;
-  padding: 5px;
-  overflow-y: scroll;
+  left: 0;
+  top: 8%;
+  padding: 10px;
+  overflow-y: scroll hidden;
+  border-radius: 5%;
+  align-content: center;
 }
+
 .container {
   background-color: rgba(142, 146, 146, 0.24);
 }
+
 .news {
   font-size: medium;
+}
+
+.tabHeaders{
+  background: goldenrod;
+  align-content: center;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: goldenrod !important;
+  color: black !important;
+}
+
+.popupBtns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.closeBtn {
+  background-color: red;
 }
