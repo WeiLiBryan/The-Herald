@@ -12,7 +12,7 @@ const logout = function () {
 };
 
   return (
-    <Nav defaultActiveKey="/home" as="ul">
+    <Nav defaultActiveKey="/home" as="ul" id="navybar">
   <Nav.Item as="li" >
     <Nav.Link href="/" id="brand">Herald</Nav.Link>
   </Nav.Item>

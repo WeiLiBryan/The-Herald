@@ -1,6 +1,8 @@
-/* body {
-  height: 100%;
-} */
+.App {
+  /* background-color: rgba(0,24,111,255); */
+  overflow-x: hidden;
+  /* height: 100vh; */
+}
 
 /* .App {
   text-align: center;
