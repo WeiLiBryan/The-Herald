@@ -11,9 +11,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   });
 
   useEffect(() => {
-    console.log("API", API);
+    // console.log("API", API);
     API.authUser().then(function (res) {
-        console.log("logged in???", res.data)
+        console.log("logged in, t/f???", res.data)
       // console.log("are you logged in???", res.data)
       setLoggedIn(res.data);
     });

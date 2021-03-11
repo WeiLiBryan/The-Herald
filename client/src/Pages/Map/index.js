@@ -34,10 +34,13 @@ function MapPage() {
     API.newsArticles(currentCountry, date).then(function (res) {
       // console.log("news articles", res.data.articles);
       let data = res.data.articles;
+      // console.log("ARTICLES", data)
       articleSet(data);
     });
 }, [date]);
 
+// console.log("ARTICLES STATE", articles);
+// console.log("COUNTRY STATE", currentCountry);
 
   
 
@@ -58,7 +61,7 @@ function MapPage() {
     <Tab onClick={()=>dateTime("&from=" + now.plus({ days: -7 }).toISODate())}>Weekly</Tab>
     <Tab onClick={()=>dateTime("&from=" + now.plus({ days: -28 }).toISODate())}>Monthly</Tab>
   </TabList>
-  {articles.splice(0, 5).map((item, index) => {
+  {articles.map((item, index) => {
           return (
             <Popup
               key={index}

@@ -24,7 +24,7 @@ function NewsFeed() {
     const search = (country) => {
         API.newsArticlesProfile(country).then((res) => {
             let data = res.data.articles;
-            console.log(data);
+            // console.log(data);
             setArticles(data);
         });
     };
@@ -33,6 +33,7 @@ function NewsFeed() {
         <Tabs>
             <TabList>
                 {/* MAPS THE SAVED COUNTRIES FOR TAB HEADERS*/}
+                <Tab>Your News Feed</Tab>
                 {userData.map(country => {
 
                     return (
@@ -43,8 +44,8 @@ function NewsFeed() {
 
             {/* SEARCHES API WITH COUNTRY NAME AND OUTPUTS THE ARTICLES HERE */}
 
-            {articles.splice(0, 10).map((article, index) => {
-                console.log("ARTICLES???")
+            {articles.map((article, index) => {
+                // console.log("ARTICLES???")
                 return (
                     <a href={article.url} target="_blank" rel="noreferrer" key={index}>
                         <div className="container-div">

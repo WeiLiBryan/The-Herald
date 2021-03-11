@@ -32,10 +32,13 @@ const handleCountrySel = function (e) {
     //Subscribe(countryName);
     setCurrentCountry(countryName);
 
+    // console.log("you clicked on ===>", countryName);
+
 
     API.newsArticles(countryName, date).then(function (res) {
       // console.log("news articles", res.data.articles);
       let data = res.data.articles;
+      // console.log("ARTICLES DATA", data)
       articleSet(data);
     });
 
