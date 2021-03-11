@@ -20,13 +20,9 @@
 .content {
   position: fixed;
   top: 20%;
-  /* background: rgba(0, 0, 0, 0.5); */
   color: white;
   width: 100%;
-  /* padding: 20px; */
-  /* text-align: center; */
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  /* height: fit-content; */
   display: flex;
   flex-direction: column;
   align-self: flex-start;
