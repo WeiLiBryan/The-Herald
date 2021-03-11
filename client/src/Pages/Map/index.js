@@ -53,6 +53,7 @@ function MapPage() {
         <Tabs>
   <TabList>
     {/* MAPS THE SAVED COUNTRIES FOR TAB HEADERS*/}
+    <Tab onClick={()=>dateTime("")}>Top News</Tab>
     <Tab onClick={()=>dateTime("&from=" + now.toISODate())}>Daily</Tab>
     <Tab onClick={()=>dateTime("&from=" + now.plus({ days: -7 }).toISODate())}>Weekly</Tab>
     <Tab onClick={()=>dateTime("&from=" + now.plus({ days: -28 }).toISODate())}>Monthly</Tab>

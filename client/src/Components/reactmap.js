@@ -9,7 +9,7 @@ import { styleLayer } from "./map-style";
 import API from "../utils/API.js";
 import bbox from "@turf/bbox";
 
-function Map( { articleSet, changeDisplayState, setCurrentCountry, date, currentCountry}) {
+function Map( { articleSet, changeDisplayState, setCurrentCountry, date}) {
   const [viewport, setViewport] = useState({
     latitude: 37.7406,
     longitude: -122.4217,
@@ -33,7 +33,7 @@ const handleCountrySel = function (e) {
     setCurrentCountry(countryName);
 
 
-    API.newsArticles(currentCountry, date).then(function (res) {
+    API.newsArticles(countryName, date).then(function (res) {
       // console.log("news articles", res.data.articles);
       let data = res.data.articles;
       articleSet(data);
