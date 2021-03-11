@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const userController = require("../../controllers/userController");
 const passport = require('passport')
 
 // NOTE: could not modularize the login route further than this (by passing it to the controller), authentication had to be done directly on the route as below

@@ -7,7 +7,7 @@ router.use("/api", apiRoutes);
 router.get('/logout', function (req, res){
   console.log("logging out????")
   req.session.destroy(function (err) {
-    res.redirect("/");
+    res.send("byebye");
   });
 });
 
