@@ -30,20 +30,22 @@ function Login() {
       <div className="content">
         <div className="login div-box content">
           <h1>Login</h1>
-          <input
+          </div>
+          <div className="div-box"><input
             className="signForm"
-            placeholder="username"
+            placeholder="Username"
             onChange={(e) => setLoginUsername(e.target.value)}
           />
           <input
             className="signForm"
-            placeholder="password"
+            type="password"
+            placeholder="Password"
             onChange={(e) => setLoginPassword(e.target.value)}
           />
 
-          <button onClick={login}>Submit</button>
+          <button className="btn" onClick={login}>Submit</button>
           <hr />
-          <a href="/"><h6>Don't Have An Account?</h6></a>
+          <a href="/" id="homebutts"><h6 className="acctLink">Don't Have An Account?</h6></a>
         </div>
       </div>
     </div>

@@ -1,0 +1,26 @@
+.fourOhfour {
+    margin: auto;
+    width: 50%;
+}
+
+#fourOhtext {
+    padding-top: 50px;
+    color: rgb(218, 159, 10);
+    animation-name: color;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes color {
+    0% {
+        color: rgb(218, 159, 10)
+    }
+
+    50% {
+        color: rgb(212, 198, 161)
+    }
+
+    100% {
+        color:  rgb(218, 159, 10)
+    }
+}

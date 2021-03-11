@@ -7,7 +7,23 @@
   margin: 10px auto;
 }
 
-.submit {
-  
+.acctLink {
+  color: goldenrod;
 }
 
+.acctLink:hover {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.btn {
+  background-color: goldenrod!important
+}
+
+.btn:hover {
+  background-color: rgba(218, 165, 32, 0.8)!important
+}
+
+#homebutts{
+  text-decoration: none;
+}

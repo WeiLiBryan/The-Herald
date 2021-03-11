@@ -43,7 +43,6 @@ function MapPage() {
   // console.log("COUNTRY STATE", currentCountry);
 
 
-
   return (
     <div>
       <div

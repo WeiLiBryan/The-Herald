@@ -1,0 +1,38 @@
+.nonAuth {
+    margin: auto;
+    width: 50%;
+}
+
+#nonAuthtext {
+    width: 50%;
+    padding-top: 50px;
+    color: rgb(218, 159, 10);
+    animation-name: color;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+#nonAuthredir{
+    font-size: 2rem;
+    color: rgb(218, 159, 10);
+}
+
+#nonAuthredir:hover {
+    font-size: 2rem;
+    text-decoration: none;
+    color: rgb(212, 198, 161)
+}
+
+@keyframes color {
+    0% {
+        color: rgb(218, 159, 10)
+    }
+
+    50% {
+        color: rgb(212, 198, 161)
+    }
+
+    100% {
+        color:  rgb(218, 159, 10)
+    }
+}

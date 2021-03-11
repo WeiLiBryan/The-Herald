@@ -18,7 +18,8 @@ function Popup(props) {
     //     </li>
     //   </ul>
     // </div>
-    <a href={props.url} target="_blank" rel="noreferrer" key={props.key}>
+    
+    <a href={props.url} target="_blank" rel="noreferrer">
       <div className="container-div">
         <Card className="bg-dark text-white">
           <Card.Img src={props.image ? props.image : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE4XS9WxfgNvETnRb2FpJYq1mLc8K9GRJU_w&usqp=CAU"}
@@ -33,9 +34,7 @@ function Popup(props) {
           </Card.ImgOverlay>
         </Card>
       </div>
-
-
-    </a>
+    </a>   
   );
 }
 
