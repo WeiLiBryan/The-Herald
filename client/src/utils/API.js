@@ -11,35 +11,35 @@ export default {
 
     // NOTE: axios routes are for development only, add a ternary statement or update once in production
     registerUser : function (info) {
-        return axios.post("http://localhost:8080/api/signup", info)
+        return axios.post("/api/signup", info)
     },
 
     loginUser: function (info) {
-        return axios.post("http://localhost:8080/api/login", info, {
+        return axios.post("/api/login", info, {
             withCredentials: true
           })
     },
 
     updateTopic : function (info) {
-        return axios.put("http://localhost:8080/api/update", info, {
+        return axios.put("/api/update", info, {
             withCredentials: true
           })
     },
 
     authUser: function () {
-        return axios.get("http://localhost:8080/api/checkAuthentication", {
+        return axios.get("/api/checkAuthentication", {
             withCredentials: true
           })
     },
 
     getUserInfo: function () {
-        return axios.get("http://localhost:8080/api/userTopics", {
+        return axios.get("/api/userTopics", {
             withCredentials: true
           } )
     },
 
     logoutUser: function () {
-        return axios.get("http://localhost:8080/logout", {
+        return axios.get("/logout", {
             withCredentials: true
           } )
     }
