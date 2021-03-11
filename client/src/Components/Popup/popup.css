@@ -22,6 +22,10 @@
   flex-direction: column;
 }
 
+.container-div {
+  font-size: 10px !important;
+}
+
 /* .article-container {
   flex: 1;
   overflow-y: scroll;
