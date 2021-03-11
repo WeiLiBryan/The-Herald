@@ -46,7 +46,9 @@ function Signup() {
             placeholder="password"
             onChange={(e) => setRegisterPassword(e.target.value)}
           />
-          <button onClick={register}>Submit</button>
+          <button className="btn btn-danger" onClick={register}>
+            Submit
+          </button>
           <hr />
           <a href="/login">
             <h6>Already Registered?</h6>

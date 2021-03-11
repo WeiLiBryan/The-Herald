@@ -4,7 +4,7 @@ import "./popup.css";
 function Popup(props) {
   return (
     <div className="container">
-      <h3>{props.title}</h3>
+      <a href={props.link}><h3>{props.title}</h3></a>
       <ul className="news">
         <li>
           <strong>Content:</strong> {props.content}

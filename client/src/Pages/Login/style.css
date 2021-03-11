@@ -7,5 +7,9 @@
   margin: 10px auto;
 }
 
-.submit {
+.btn {
+  width: 100px;
+  text-align: center;
+  padding: 50px;
+  margin: 10px auto;
 }
